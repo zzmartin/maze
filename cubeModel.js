@@ -92,7 +92,7 @@ function cubeModel() {
             //colors.push( vertexColors[indices[i]] );
 
             // for the base of BLACK cube //0
-            colors.push(vertexColors[ran]);
+            colors.push(vertexColors[6]);
 
         }
         texCoordsArray.push(texCoord(0, e));
