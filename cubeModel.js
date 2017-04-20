@@ -14,21 +14,21 @@ function cubeModel() {
     //vetices of the colors, another layer above the BLACK cube 
     /*var texCoord = new Array(vec2(1 / 6, 0),vec2(1 / 6, 1),vec2(0 + 1 / 6, 1),vec2(0 + 1 / 6, 0));*/
     var vertexColors = [[0.0, 0.0, 0.0, 1.0], // black
-
-    [0.0, 0.0, 1.0, .8], // blue
-    [1.0, 0.0, 1.0, 0.8], // magenta
-    [1.0, 1.0, 0.0, 0.8], // yellow
-    [0.0, 1.0, 0.0, .8], // green
-    [1.0, 0.0, 0.0, .8], // red
+ [1.0, 1.0, 1.0, 1.0],
+    [0.0, 0.0, 1.0, 1.0], // blue
+    [1.0, 0.0, 1.0, 1.0], // magenta
+    [1.0, 1.0, 0.0, 1.0], // yellow
+    [0.0, 1.0, 0.0, 1.0], // green
+    [1.0, 0.0, 0.0, 1.0], // red
     [1.0, 1.0, 1.0, 1.0], // white
 
-    [0.0, 1.0, 1.0, .8]// cyan
+    [0.0, 1.0, 1.0, 1.0]// cyan
     ];
 
     colorCube();
     result.points = points;
     result.colors = colors;
-    result.normalsArray=normalsArray;
+    result.normalsArray = normalsArray;
     result.NumVertices = NumVertices;
     result.translate = translate;
     result.scale = scale;
@@ -84,15 +84,15 @@ function cubeModel() {
         //vertex color assigned by the index of the vertex
 
         var indices = [a, b, c, a, c, d];
-
+        var ran = Math.floor((Math.random() * 2));
         for (var i = 0; i < indices.length; ++i) {
-            var ran = Math.floor((Math.random() * 8));
+
             NumVertices++;
             points.push(vertices[indices[i]]);
             //colors.push( vertexColors[indices[i]] );
 
             // for the base of BLACK cube //0
-            colors.push(vertexColors[6]);
+            colors.push(vertexColors[ran]);
 
         }
         texCoordsArray.push(texCoord(0, e));
