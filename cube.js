@@ -29,7 +29,7 @@ var cameraPosition;
 var map = [];
 var mx, my;
 var n = 5;
-var w = 7;
+var w = 5;
 //must be odd
 var v;
 
@@ -39,7 +39,36 @@ var shininessLocation;
 var lightWorldPositionLocation;
 var viewWorldPositionLocation;
 var worldLocation;
+/* function loadImageAndCreateTextureInfo(url) {
+    var tex = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, tex);
+    // Fill the texture with a 1x1 blue pixel.
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE,
+                  new Uint8Array([0, 0, 255, 255]));
 
+    // let's assume all images are not a power of 2
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+
+    var textureInfo = {
+      width: 1,   // we don't know the size until it loads
+      height: 1,
+      texture: tex,
+    };
+    var img = new Image();
+    img.addEventListener('load', function() {
+      textureInfo.width = img.width;
+      textureInfo.height = img.height;
+
+      gl.bindTexture(gl.TEXTURE_2D, textureInfo.texture);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+    });
+    requestCORSIfNotSameOrigin(img, url);
+    img.src = url;
+
+    return textureInfo;
+  }*/
 function mapGen(n) {
     //generate the map
 
@@ -166,7 +195,7 @@ window.onload = function init() {
             for (var j = 0; j < w + 2; j++) {
 
                 //  if(j>0&&j<w+1)continue;//
-              //  if (j == 0 || j == w + 1)    continue;
+             //   if (j == 0 || j == w + 1)    continue;
                 
 
                if (j > 0 && j < w + 1)
@@ -244,9 +273,12 @@ window.onload = function init() {
     viewWorldPositionLocation = gl.getUniformLocation(program, "u_viewWorldPosition");
     worldLocation = gl.getUniformLocation(program, "u_world");
 
-    var image = document.getElementById("texImage");
+     
+   // var image = document.getElementById("texImage");
+   //var image  =loadImageAndCreateTextureInfo('https://c1.staticflickr.com/9/8873/18598400202_3af67ef38f_q.jpg');
 
-    configureTexture(image);
+//    image.crossOrigin = "";
+   // configureTexture(image);
 
     window.addEventListener("keydown", function(event) {
 
@@ -359,22 +391,22 @@ function bounce() {
     //my algorithm, checks all four directions in terms of absolute position 
     // if there is a wall ahead, bounce you to the opposite side(based on the wall rather than camera angle or move directions)
 
-    var camX = cameraPosition[0] + .5 + (1 / cubeM) * 2;
+    var camX = cameraPosition[0] + .5 + (1 / cubeM) * 1.5;
     var camY = cameraPosition[2] + .5;
     var posX = Math.floor(camX * cubeM);
     var posY = Math.floor(camY * cubeM);
 
-    var camX2 = cameraPosition[0] + .5 - (1 / cubeM) * 2;
+    var camX2 = cameraPosition[0] + .5 - (1 / cubeM) * 1.5;
     var camY2 = cameraPosition[2] + .5;
     var posX2 = Math.floor(camX2 * cubeM);
     var posY2 = Math.floor(camY2 * cubeM);
     var camX3 = cameraPosition[0] + .5;
-    var camY3 = cameraPosition[2] + .5 + (1 / cubeM) * 2;
+    var camY3 = cameraPosition[2] + .5 + (1 / cubeM) * 1.5;
     var posX3 = Math.floor(camX3 * cubeM);
     var posY3 = Math.floor(camY3 * cubeM);
 
     var camX4 = cameraPosition[0] + .5;
-    var camY4 = cameraPosition[2] + .5 - (1 / cubeM) * 2;
+    var camY4 = cameraPosition[2] + .5 - (1 / cubeM) * 1.5;
     var posX4 = Math.floor(camX4 * cubeM);
     var posY4 = Math.floor(camY4 * cubeM);
 
