@@ -76,8 +76,8 @@ uniform sampler2D texture;
 void
 main()
 {
-   
-   gl_FragColor = texture2D( texture, fTexCoord );
+   gl_FragColor=fColor;
+  // gl_FragColor = texture2D( texture, fTexCoord );
   
 
 float fogFactor = clamp((.3 - v_Dist) / .25, 0.0, 1.0);
