@@ -14,7 +14,7 @@ function cubeModel() {
     //vetices of the colors, another layer above the BLACK cube 
     /*var texCoord = new Array(vec2(1 / 6, 0),vec2(1 / 6, 1),vec2(0 + 1 / 6, 1),vec2(0 + 1 / 6, 0));*/
     var vertexColors = [[0.0, 0.0, 0.0, 1.0], // black
- [1.0, 1.0, 1.0, 1.0],
+ [1.0, 0.0, 1.0, 1.0],
     [0.0, 0.0, 1.0, 1.0], // blue
     [1.0, 0.0, 1.0, 1.0], // magenta
     [1.0, 1.0, 0.0, 1.0], // yellow
